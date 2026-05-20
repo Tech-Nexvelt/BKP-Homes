@@ -1,6 +1,6 @@
-# BKP-Homes (Luxora)
+# BKP-Homes 
 
-BKP-Homes (branded as **Luxora**) is a premium, state-of-the-art luxury furniture and e-commerce platform. It provides customers with an immersive shopping experience featuring interactive 3D modeling, custom furniture design wizards, real-time manufacturing and order tracking, and a comprehensive admin control center.
+BKP-Homes  is a premium, state-of-the-art luxury furniture and e-commerce platform. It provides customers with an immersive shopping experience featuring interactive 3D modeling, custom furniture design wizards, real-time manufacturing and order tracking, and a comprehensive admin control center.
 
 Built with a modern web stack utilizing **Next.js 15**, **Three.js (React Three Fiber)**, **Express**, and **Prisma ORM with PostgreSQL**.
 

@@ -70,7 +70,7 @@ export function CustomFurnitureWizard() {
         preferredDate: preferredDate ? new Date(preferredDate).toISOString() : undefined,
       });
       setStep(8); // Completed Success screen
-      toast.success('Bespoke furniture request created!');
+      toast.success('BKP furniture request created!');
     } catch (err: any) {
       toast.error(err.response?.data?.message || 'Submission failed. Please log in.');
     } finally {
@@ -85,7 +85,7 @@ export function CustomFurnitureWizard() {
       {step <= 7 && (
         <div className="flex justify-between items-center border-b border-dark-border/60 pb-5 mb-8">
           <div>
-            <span className="text-[10px] font-bold text-gold tracking-widest uppercase">Bespoke Configurator</span>
+            <span className="text-[10px] font-bold text-gold tracking-widest uppercase">BKP Configurator</span>
             <h2 className="font-display text-xl md:text-2xl font-semibold tracking-wide text-gold-light mt-0.5">
               Step {step} of 7: {
                 step === 1 ? 'Design Category' :
@@ -347,7 +347,7 @@ export function CustomFurnitureWizard() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-muted-fg tracking-wide uppercase">Bespoke Design Requests & Notes</label>
+                <label className="text-xs font-semibold text-muted-fg tracking-wide uppercase">BKP Design Requests & Notes</label>
                 <textarea
                   placeholder="Mention unique custom details, carvings, base alterations, brass inlay wishes, etc..."
                   value={notes}
@@ -373,7 +373,7 @@ export function CustomFurnitureWizard() {
                 Masterpiece Configured Successfully!
               </h3>
               <p className="text-xs text-muted-fg max-w-md mx-auto mt-2 leading-relaxed">
-                Your bespoke custom furniture design parameters have been logged. A dedicated BKP design staff from our Hyderabad studio will connect with you via email within 24 hours to finalize sketches and material discussions.
+                Your BKP custom furniture design parameters have been logged. A dedicated BKP design staff from our Hyderabad studio will connect with you via email within 24 hours to finalize sketches and material discussions.
               </p>
               <Button
                 variant="outline"
@@ -416,7 +416,7 @@ export function CustomFurnitureWizard() {
             </Button>
           ) : (
             <Button variant="gold" onClick={handleSubmit} loading={loading} className="text-xs h-9.5 shadow-gold">
-              Submit Bespoke Request
+              Submit BKP Request
             </Button>
           )}
         </div>

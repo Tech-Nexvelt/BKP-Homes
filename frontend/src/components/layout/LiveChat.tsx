@@ -178,7 +178,7 @@ export function LiveChat() {
                   <div className="h-full flex flex-col justify-between">
                     <div className="text-center py-6">
                       <MessageSquare className="h-8 w-8 text-gold mx-auto mb-2 animate-bounce" />
-                      <h4 className="text-sm font-semibold text-foreground">Bespoke Design Chat</h4>
+                      <h4 className="text-sm font-semibold text-foreground">BKP Design Chat</h4>
                       <p className="text-xs text-muted-fg max-w-xs mx-auto mt-1">
                         Connect live with our designers. Discuss custom models, size alterations, or space designs.
                       </p>

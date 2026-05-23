@@ -1,23 +1,45 @@
-import api from '@/lib/axios';
 import type { Category } from '@/types/product.types';
 import type { ApiResponse } from '@/types/api.types';
+import { staticCategories } from '@/lib/staticProducts';
+
+// Helper to wrap static data in Axios-like response format
+const wrapResponse = <T>(data: T) => {
+  return {
+    data: {
+      success: true,
+      message: 'Success',
+      data,
+    } as ApiResponse<T>,
+  };
+};
 
 export const categoryService = {
-  getAll: () =>
-    api.get<ApiResponse<Category[]>>('/categories'),
+  getAll: async () => {
+    return wrapResponse(staticCategories);
+  },
 
-  getTree: () =>
-    api.get<ApiResponse<Category[]>>('/categories/tree'),
+  getTree: async () => {
+    return wrapResponse(staticCategories);
+  },
 
-  getBySlug: (slug: string) =>
-    api.get<ApiResponse<Category>>(`/categories/${slug}`),
+  getBySlug: async (slug: string) => {
+    const category = staticCategories.find((c) => c.slug === slug);
+    if (!category) {
+      throw new Error(`Category not found with slug: ${slug}`);
+    }
+    return wrapResponse(category);
+  },
 
-  create: (data: Partial<Category>) =>
-    api.post<ApiResponse<Category>>('/categories', data),
+  create: async (data: Partial<Category>) => {
+    throw new Error('Create category not supported in static mode');
+  },
 
-  update: (id: string, data: Partial<Category>) =>
-    api.patch<ApiResponse<Category>>(`/categories/${id}`, data),
+  update: async (id: string, data: Partial<Category>) => {
+    throw new Error('Update category not supported in static mode');
+  },
 
-  delete: (id: string) =>
-    api.delete<ApiResponse<null>>(`/categories/${id}`),
+  delete: async (id: string) => {
+    throw new Error('Delete category not supported in static mode');
+  },
 };
+

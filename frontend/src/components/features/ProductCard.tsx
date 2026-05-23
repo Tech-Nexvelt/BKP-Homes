@@ -7,6 +7,7 @@ import type { Product } from '@/types/product.types';
 import { useCurrency } from '@/hooks/useCurrency';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
+import { useAuth } from '@/hooks/useAuth';
 import { WishlistButton } from './WishlistButton';
 
 export interface ProductCardProps {
@@ -17,10 +18,17 @@ export function ProductCard({ product }: ProductCardProps) {
   const { format } = useCurrency();
   const { addItem } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { isAuthenticated } = useAuth();
 
   const activePrice = product.salePrice ?? product.price;
   const isDiscounted = !!product.salePrice;
   const isFavorite = isInWishlist(product.id);
+
+  const handleLoginRedirect = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = '/login';
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -69,13 +77,22 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Quick Add To Cart Hover overlay button - elegant glassmorphic bar */}
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-end justify-center p-4">
-            <button
-              onClick={handleAddToCart}
-              className="w-full py-4 px-4 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-[9px] font-bold tracking-[0.2em] uppercase rounded-none transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0"
-            >
-              <ShoppingBag className="h-3.5 w-3.5" />
-              Acquire Curation
-            </button>
+            {isAuthenticated ? (
+              <button
+                onClick={handleAddToCart}
+                className="w-full py-4 px-4 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-[9px] font-bold tracking-[0.2em] uppercase rounded-none transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0"
+              >
+                <ShoppingBag className="h-3.5 w-3.5" />
+                Acquire Curation
+              </button>
+            ) : (
+              <button
+                onClick={handleLoginRedirect}
+                className="w-full py-4 px-4 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-[9px] font-bold tracking-[0.2em] uppercase rounded-none transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0"
+              >
+                Login to Purchase
+              </button>
+            )}
           </div>
         </div>
 
@@ -100,13 +117,24 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Pricing Row */}
-          <div className="flex items-baseline gap-2 mt-5 pt-4 border-t border-[#7D7A74]/10">
-            <span className="text-base font-light text-[#C8A96B] tracking-tight">
-              {format(activePrice)}
-            </span>
-            {isDiscounted && (
-              <span className="text-xs text-[#7D7A74] line-through font-light">
-                {format(product.price)}
+          <div 
+            onClick={isAuthenticated ? undefined : handleLoginRedirect}
+            className="flex items-baseline gap-2 mt-5 pt-4 border-t border-[#7D7A74]/10 cursor-pointer"
+          >
+            {isAuthenticated ? (
+              <>
+                <span className="text-base font-light text-[#C8A96B] tracking-tight">
+                  {format(activePrice)}
+                </span>
+                {isDiscounted && (
+                  <span className="text-xs text-[#7D7A74] line-through font-light">
+                    {format(product.price)}
+                  </span>
+                )}
+              </>
+            ) : (
+              <span className="text-xs font-semibold text-[#C8A96B] hover:text-[#D9BB84] transition-colors uppercase tracking-wider">
+                Login to view price
               </span>
             )}
           </div>

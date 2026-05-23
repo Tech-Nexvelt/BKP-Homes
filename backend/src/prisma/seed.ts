@@ -123,7 +123,7 @@ async function main() {
   // Portfolio
   const portfolioProjects = [
     { title: 'Banjara Hills Villa — Complete Interior', description: 'Full home furnishing for a 4500 sqft luxury villa in Banjara Hills, Hyderabad.', images: ['https://images.unsplash.com/photo-1616137466211-f939a420be84?w=1200'], roomType: 'Full Home', projectType: 'Residential', client: 'Reddy Family', location: 'Banjara Hills, Hyderabad', isPublished: true, sortOrder: 1 },
-    { title: 'Film Nagar Penthouse — Living & Dining', description: 'Bespoke living and dining area furniture for a penthouse overlooking the city.', images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200'], roomType: 'Living Room', projectType: 'Residential', client: 'Kapoor Residence', location: 'Film Nagar, Hyderabad', isPublished: true, sortOrder: 2 },
+    { title: 'Film Nagar Penthouse — Living & Dining', description: 'BKP living and dining area furniture for a penthouse overlooking the city.', images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200'], roomType: 'Living Room', projectType: 'Residential', client: 'Kapoor Residence', location: 'Film Nagar, Hyderabad', isPublished: true, sortOrder: 2 },
     { title: 'Jubilee Hills Office — Executive Suite', description: 'Corporate executive suite with custom desks, meeting table and lounge seating.', images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200'], roomType: 'Office', projectType: 'Commercial', client: 'TechCorp India', location: 'Jubilee Hills, Hyderabad', isPublished: true, sortOrder: 3 },
   ];
 

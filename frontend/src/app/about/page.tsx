@@ -79,7 +79,7 @@ export default function AboutPage() {
             className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-card"
           >
             <img 
-              src="https://images.unsplash.com/photo-1618220179428-22790b46a015?w=1200" 
+              src="/images/craftsman_workshop.png" 
               alt="Workshop craftsmanship"
               className="w-full h-full object-cover"
             />

@@ -20,9 +20,12 @@ import {
   Sliders,
   Sparkles,
   Flame,
-  Award
+  Award,
+  ChevronRight
 } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useAuth } from '@/hooks/useAuth';
+import { staticProducts } from '@/lib/staticProducts';
 
 const ShowroomScene = dynamic(
   () => import('@/components/features/ShowroomScene').then(mod => mod.ShowroomScene),
@@ -34,29 +37,10 @@ const Room360Viewer = dynamic(
   { ssr: false }
 );
 
-const BlueprintAnimation = dynamic(
-  () => import('@/components/features/BlueprintAnimation').then(mod => mod.BlueprintAnimation),
-  { ssr: false }
-);
-
 export default function HomePage() {
+  const { isAuthenticated } = useAuth();
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
   const [activeCollection, setActiveCollection] = React.useState(0);
-
-  const heroBackgrounds = [
-    "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=2500",
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2500",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2500",
-    "https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=2500"
-  ];
-  const [bgIndex, setBgIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % heroBackgrounds.length);
-    }, 6000); // Rotate every 6 seconds
-    return () => clearInterval(timer);
-  }, []);
 
   const ambientGlows = [
     { className: "absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-[#C8A96B]/5 blur-[120px] rounded-full" },
@@ -145,7 +129,7 @@ export default function HomePage() {
       count: '14 Pieces',
       video: 'https://assets.mixkit.co/videos/preview/mixkit-dining-room-interior-with-wooden-table-and-chairs-41684-large.mp4',
       desc: 'Formality meets sculptural art. Built around centerpiece slabs of premium marble and hand-planed teak, creating an heirloom setting for dinner gatherings.',
-      items: ['Majestic Verde Alpi Table', 'Heirloom Slatted Buffet', 'Bespoke Cane Dining Chairs', 'Brass Floating Chandelier'],
+      items: ['Majestic Verde Alpi Table', 'Heirloom Slatted Buffet', 'BKP Cane Dining Chairs', 'Brass Floating Chandelier'],
       href: '/products?category=dining'
     },
     { 
@@ -186,7 +170,7 @@ export default function HomePage() {
 
   const testimonials = [
     { name: 'Aishwarya Reddy', role: 'Architectural Director, Hyderabad', text: '"BKP HOMES has redefined our expectations of domestic craft. The teak joinery and customized fabric options match Italian standards at their finest."', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { name: 'Devendra Singhania', role: 'Penthouse Owner, Mumbai', text: '"The bespoke consultation process was absolute white-glove service. From virtual renders to final installation, the experience felt exceptionally premium."', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { name: 'Devendra Singhania', role: 'Penthouse Owner, Mumbai', text: '"The BKP consultation process was absolute white-glove service. From virtual renders to final installation, the experience felt exceptionally premium."', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
     { name: 'Dr. Kavitha Rao', role: 'Curator, Art House India', text: '"A flawless blend of tactile luxury and architectural geometry. Their pieces act as permanent sculptures in our lounge spaces."', image: 'https://randomuser.me/api/portraits/women/68.jpg' },
   ];
 
@@ -200,99 +184,55 @@ export default function HomePage() {
 
       {/* 1. Fullscreen Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image Overlay with Softer Cinematic Vignette */}
+        {/* Background Image Overlay */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <div className="absolute inset-0 bg-black/35 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/85 z-10" />
-          <AnimatePresence initial={false}>
-            <motion.img 
-              key={bgIndex}
-              src={heroBackgrounds[bgIndex]} 
-              alt="Luxury Showroom Background"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1.02 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 2.0, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.95]"
-            />
-          </AnimatePresence>
+          <motion.img 
+            src="/images/luxury_interior_hero.png"
+            alt="BKP Interior Design Services"
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.7]"
+          />
         </div>
 
         <div className="container-luxora relative z-20 w-full flex flex-col justify-center h-full pt-24">
           <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96B]" />
-              <span className="text-[10px] font-semibold tracking-[0.3em] text-[#C8A96B] uppercase">
-                Now Open: The Showroom
-              </span>
-            </motion.div>
-
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-light text-[#F5F2ED] leading-[1.05] tracking-tight mb-8"
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-[#F5F2ED] leading-[1.1] tracking-tight mb-6 uppercase"
             >
-              Timeless design <br />
-              <span className="italic font-normal text-[#D9BB84]">for luxury living.</span>
+              ELEVATE YOUR SPACE: <br />
+              <span className="text-[#C8A96B]">BKP INTERIOR DESIGN SERVICES</span>
             </motion.h1>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="text-sm md:text-base text-[#B8B3AA] leading-relaxed max-w-lg mb-12 font-light"
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="text-sm md:text-base text-[#B8B3AA] leading-relaxed max-w-2xl mb-12 font-light"
             >
-              BKP HOMES creates custom furniture that blends aesthetics, comfort and craftsmanship to elevate every space.
+              Discover BKP furniture and comprehensive design solutions tailored to your unique architectural parameters. Our curated spaces redefine modern luxury.
             </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.45 }}
-              className="flex flex-wrap items-center gap-6"
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             >
-              <Link href="/products">
-                <button className="h-12 px-8 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-[10px] tracking-[0.2em] font-semibold uppercase transition-all duration-300 flex items-center justify-center gap-2.5 shadow-xl shadow-[#C8A96B]/10 hover:-translate-y-0.5">
-                  Acquire Curation <ArrowRight className="w-3.5 h-3.5" />
+              <Link href="/interior-services">
+                <button className="h-14 px-10 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-xs tracking-[0.2em] font-bold uppercase transition-all duration-300 shadow-xl shadow-[#C8A96B]/20 hover:-translate-y-1 rounded-sm">
+                  Virtual Reality Tour
                 </button>
               </Link>
-              <Link href="/custom-furniture">
-                <button className="h-12 px-8 border border-[#F5F2ED]/25 hover:border-[#C8A96B] text-[#F5F2ED] hover:text-[#C8A96B] text-[10px] tracking-[0.2em] font-semibold uppercase transition-all duration-300 hover:-translate-y-0.5 bg-black/20 backdrop-blur-sm flex items-center justify-center">
-                  Custom Design
-                </button>
-              </Link>
-              <button 
-                onClick={() => setIsVideoOpen(true)}
-                className="h-12 px-6 border border-[#F5F2ED]/10 hover:border-[#C8A96B]/50 hover:bg-[#C8A96B]/5 text-[#F5F2ED] hover:text-[#C8A96B] transition-all duration-300 group flex items-center justify-center gap-3 bg-black/10 backdrop-blur-sm"
-              >
-                <Play className="w-2.5 h-2.5 fill-[#F5F2ED] group-hover:fill-[#C8A96B] group-hover:text-[#C8A96B] transition-all" />
-                <span className="text-[10px] tracking-[0.2em] font-semibold uppercase">Watch Showreel</span>
-              </button>
             </motion.div>
           </div>
         </div>
 
-        {/* Hero Bottom Bar */}
-        <div className="absolute bottom-10 left-0 w-full z-30">
-          <div className="container-luxora flex justify-between items-center">
-            <div className="text-[9px] tracking-[0.25em] text-[#7D7A74] uppercase font-semibold">
-              BKP HOMES • Crafted in India
-            </div>
-            <div className="flex items-center gap-4 text-[10px] font-semibold tracking-wider text-[#7D7A74]">
-              <span className="text-[#F5F2ED]">I</span>
-              <div className="w-16 h-[1px] bg-[#7D7A74]/30 relative">
-                <div className="absolute top-0 left-0 h-full w-1/3 bg-[#C8A96B]" />
-              </div>
-              <span>III</span>
-            </div>
-          </div>
-        </div>
+
       </section>
 
       {/* 2. Brand Philosophy Section */}
@@ -400,7 +340,13 @@ export default function HomePage() {
 
                 <div className="flex items-baseline gap-4 mb-10">
                   <span className="text-[10px] tracking-wider text-[#7D7A74] uppercase font-semibold">Estimates</span>
-                  <span className="text-2xl font-light text-[#C8A96B] tracking-tight">{collections[activeCollection].price}</span>
+                  {isAuthenticated ? (
+                    <span className="text-2xl font-light text-[#C8A96B] tracking-tight">{collections[activeCollection].price}</span>
+                  ) : (
+                    <Link href="/login" className="text-xs font-semibold text-[#C8A96B] hover:text-[#D9BB84] transition-colors uppercase tracking-wider">
+                      Register/Login to view price
+                    </Link>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-6">
@@ -488,56 +434,197 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Craftsmanship Story Section */}
-      <section className="py-32 relative z-20 bg-[#050505]">
+      {/* 5. Craft Your Masterpiece Section */}
+      <section className="relative w-full aspect-video flex items-center overflow-hidden z-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/images/craftsman_workshop.png" 
+            alt="BKP craftsman working with wood" 
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+        </div>
+
+        <div className="container-luxora relative z-10 py-24">
+          <div className="max-w-3xl">
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#F5F2ED] leading-[1.1] tracking-tight mb-6 uppercase"
+            >
+              CRAFT YOUR MASTERPIECE: <br />
+              <span className="text-[#C8A96B]">BKP FURNITURE</span>
+            </motion.h2>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.15 }}
+              className="text-sm md:text-base text-[#B8B3AA] leading-relaxed max-w-xl mb-10 font-light"
+            >
+              Experience the art of handcrafted luxury. Our master craftsmen transform premium hardwoods into BKP furniture pieces, blending time-honored joinery techniques with contemporary design vision.
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <Link href="/custom-furniture">
+                <button className="h-13 px-8 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-[10px] tracking-[0.2em] font-bold uppercase transition-all duration-300 shadow-xl shadow-[#C8A96B]/20 hover:-translate-y-1 rounded-sm py-4">
+                  Virtual Workshop Tour
+                </button>
+              </Link>
+              <Link href="/products">
+                <button className="h-13 px-8 border border-[#F5F2ED]/30 hover:border-[#C8A96B] text-[#F5F2ED] hover:text-[#C8A96B] text-[10px] tracking-[0.2em] font-bold uppercase transition-all duration-300 hover:-translate-y-1 bg-black/30 backdrop-blur-sm py-4 rounded-sm">
+                  Explore Collection
+                </button>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. Consultation & Vision Section */}
+      <section className="py-24 relative z-20 bg-[#050505] border-t border-[#D9BB84]/10">
         <div className="container-luxora">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Media Block */}
-            <div className="relative rounded-none overflow-hidden border border-[#D9BB84]/15 aspect-[4/3] md:aspect-video lg:aspect-[4/3] shadow-2xl bg-[#0B0B0C]">
-              <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <BlueprintAnimation />
-              <div className="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end">
-                <div>
-                  <span className="text-[9px] tracking-[0.2em] uppercase text-[#C8A96B] font-semibold mb-1 block">Live Studio</span>
-                  <h4 className="font-display text-sm font-light text-white tracking-wide">Heritage Joinery In Action</h4>
-                </div>
-                <button 
-                  onClick={() => setIsVideoOpen(true)}
-                  className="w-12 h-12 bg-white/5 border border-white/20 flex items-center justify-center hover:bg-[#C8A96B] hover:text-black hover:border-[#C8A96B] transition-all duration-300"
-                >
-                  <Play className="w-3.5 h-3.5 ml-0.5 fill-current" />
-                </button>
-              </div>
-            </div>
+            {/* Left Image Block */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative rounded-[2rem] overflow-hidden aspect-[4/5] md:aspect-square bg-[#0B0B0C] border border-[#D9BB84]/10"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200" 
+                alt="Consultation Vision" 
+                className="w-full h-full object-cover brightness-[0.85]" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </motion.div>
 
-            {/* Right Story Copy */}
+            {/* Right Text Content */}
             <div className="flex flex-col justify-center">
-              <span className="text-[10px] font-semibold tracking-[0.3em] text-[#C8A96B] uppercase mb-4 block">
-                Honored Traditions
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl font-light text-[#F5F2ED] tracking-tight mb-8 leading-tight">
-                Where craftsmanship <br />
-                <span className="italic text-[#D9BB84]">becomes heritage.</span>
-              </h2>
-              <p className="text-sm text-[#B8B3AA] mb-6 leading-relaxed font-light">
-                Our furniture is not simply assembled; it is commissioned. We work exclusively with certified premium teak, rosewood, and American ash, dried to perfect moisture specifications to prevent warping over generations.
-              </p>
-              <p className="text-sm text-[#7D7A74] mb-10 leading-relaxed font-light">
-                Each joint is cut manually, aligned with precision, and finished with organic wax treatments to showcase the natural timber growth rings without artificial chemical stains.
-              </p>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="font-display text-4xl md:text-5xl font-light text-[#F5F2ED] tracking-tight mb-8"
+              >
+                Consultation & Vision
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-sm text-[#B8B3AA] mb-12 leading-relaxed font-light"
+              >
+                Our process begins with understanding your unique lifestyle, architectural parameters, and aesthetic aspirations. We blend your personal narrative with our design expertise to conceptualize spaces that resonate deeply. 
+                <br /><br />
+                Whether starting from blueprints or reimagining an existing room, our consultants guide you through material selections and layout possibilities.
+              </motion.p>
 
-              <div className="flex items-center gap-6">
-                <Link href="/about">
-                  <button className="bg-transparent border border-[#F5F2ED]/20 hover:border-[#C8A96B] hover:text-[#C8A96B] text-[10px] tracking-[0.2em] font-semibold uppercase px-8 py-4 transition-all duration-300">
-                    Discover Our Process
-                  </button>
-                </Link>
-                <div className="flex items-center gap-3 text-xs text-[#B8B3AA]">
-                  <ShieldCheck className="w-4 h-4 text-[#1A7A68]" />
-                  <span className="tracking-wide">10-Year Structural Warranty</span>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <h3 className="text-xl font-display text-[#F5F2ED] mb-6 border-b border-[#D9BB84]/20 pb-4">Key Benefits</h3>
+                
+                <div className="flex flex-col gap-8">
+                  <div className="flex gap-5 items-start">
+                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#C8A96B]/10 border border-[#C8A96B]/30 flex items-center justify-center text-[#C8A96B]">
+                      <Briefcase className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#F5F2ED] font-semibold tracking-wide text-sm mb-1.5">Consultation & Curation</h4>
+                      <p className="text-[#B8B3AA] text-xs font-light leading-relaxed">Personalized environments curated to balance your daily routines with extraordinary aesthetic resonance.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-5 items-start">
+                    <div className="w-12 h-12 shrink-0 rounded-2xl bg-[#C8A96B]/10 border border-[#C8A96B]/30 flex items-center justify-center text-[#C8A96B]">
+                      <Rotate3D className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#F5F2ED] font-semibold tracking-wide text-sm mb-1.5">Virtual Reality & Render</h4>
+                      <p className="text-[#B8B3AA] text-xs font-light leading-relaxed">Preview your curated space through photorealistic 3D models before final execution.</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. Our Process Timeline Section */}
+      <section className="py-24 relative z-20 bg-[#0B0B0C] border-y border-[#D9BB84]/10">
+        <div className="container-luxora">
+          <div className="flex items-center justify-between mb-16">
+            <h2 className="font-display text-3xl md:text-4xl font-light text-[#F5F2ED] tracking-tight uppercase">
+              OUR PROCESS TIMELINE
+            </h2>
+            <div className="flex gap-2 text-[#7D7A74]">
+               <ChevronRight className="w-6 h-6 rotate-180 cursor-pointer hover:text-[#C8A96B]" />
+               <ChevronRight className="w-6 h-6 cursor-pointer hover:text-[#C8A96B]" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                num: '01',
+                title: 'Detailed Milestones',
+                desc: 'A comprehensive roadmap is established, outlining every phase from initial sketches to final procurement, ensuring transparency.',
+                link: 'Select More'
+              },
+              {
+                num: '02',
+                title: 'Plan and Concept Installation',
+                desc: 'Integrating customized layouts with your space. We manage all logistics to safely position every piece of luxury furniture.',
+                link: 'Select More'
+              },
+              {
+                num: '03',
+                title: 'Verification and Finalization',
+                desc: 'A rigorous walkthrough with our lead designer guarantees every detail aligns with the original vision and structural standards.',
+                link: 'Select More'
+              }
+            ].map((step, i) => (
+              <motion.div
+                key={step.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}
+                className="bg-[#050505] border border-[#D9BB84]/20 rounded-2xl p-8 flex flex-col justify-between min-h-[320px] group hover:border-[#C8A96B]/50 hover:bg-[#0B0B0C] transition-all duration-300"
+              >
+                <div>
+                  <span className="font-display text-4xl text-[#C8A96B] font-light mb-6 block">{step.num}</span>
+                  <h3 className="text-[#F5F2ED] text-lg font-semibold tracking-wide mb-4 leading-tight pr-4">
+                    {step.title}
+                  </h3>
+                  <p className="text-[#B8B3AA] text-xs font-light leading-relaxed mb-8">
+                    {step.desc}
+                  </p>
+                </div>
+                <Link href="/about" className="text-[#C8A96B] text-[10px] font-semibold uppercase tracking-widest flex items-center gap-2 group-hover:text-white transition-colors">
+                  {step.link} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -638,6 +725,78 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 8. Most Bought Products (Logged-in only) */}
+      {isAuthenticated && (
+        <section className="bg-[#050505] py-24 relative z-20 border-t border-[#D9BB84]/10">
+          <div className="container-luxora">
+            <div className="flex items-center justify-between mb-10">
+              <h2 className="font-display text-2xl md:text-3xl font-light text-[#F5F2ED] tracking-tight italic">
+                Most Bought Products
+              </h2>
+              <Link href="/products" className="text-[10px] text-[#C8A96B] uppercase tracking-widest font-semibold flex items-center gap-1 hover:text-[#D9BB84] transition-colors">
+                View All <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide -mx-2 px-2">
+              {staticProducts.filter(p => p.isFeatured).slice(0, 8).map((product) => (
+                <Link key={product.id} href={`/products/${product.slug}`} className="min-w-[220px] md:min-w-[260px] group flex-shrink-0">
+                  <div className="aspect-square rounded-xl overflow-hidden bg-[#0B0B0C] border border-[#D9BB84]/10 mb-3 relative">
+                    <img 
+                      src={product.images[0]} 
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {product.salePrice && (
+                      <span className="absolute top-3 left-3 bg-[#C8A96B] text-black text-[9px] font-bold uppercase tracking-wider px-2.5 py-1">
+                        Sale
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-[#F5F2ED] text-xs font-semibold tracking-wide truncate group-hover:text-[#C8A96B] transition-colors">{product.name}</h3>
+                  <p className="text-[#C8A96B] text-sm font-semibold mt-1">
+                    ₹{(product.salePrice || product.price).toLocaleString('en-IN')}
+                    {product.salePrice && (
+                      <span className="text-[#7D7A74] text-xs line-through ml-2">₹{product.price.toLocaleString('en-IN')}</span>
+                    )}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 9. Related Products Grid (Logged-in only) */}
+      {isAuthenticated && (
+        <section className="bg-[#0B0B0C] py-24 relative z-20 border-t border-[#D9BB84]/10">
+          <div className="container-luxora">
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F5F2ED] tracking-tight uppercase mb-12">
+              RELATED PRODUCTS
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+              {staticProducts.slice(0, 12).map((product) => (
+                <Link key={product.id} href={`/products/${product.slug}`} className="group">
+                  <div className="aspect-square rounded-xl overflow-hidden bg-[#050505] border border-[#D9BB84]/10 mb-3 relative">
+                    <img 
+                      src={product.images[0]} 
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  <h3 className="text-[#F5F2ED] text-xs font-semibold tracking-wide truncate group-hover:text-[#C8A96B] transition-colors">{product.name}</h3>
+                  <p className="text-[#C8A96B] text-sm font-semibold mt-1">
+                    ₹{(product.salePrice || product.price).toLocaleString('en-IN')}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Video Modal Overlay */}
       {isVideoOpen && (

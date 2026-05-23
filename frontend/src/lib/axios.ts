@@ -22,7 +22,14 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const original = error.config;
-    if (error.response?.status === 401 && !original._retry) {
+
+    // Skip refresh loop for auth endpoints themselves
+    const isAuthEndpoint =
+      original?.url?.includes('/auth/refresh') ||
+      original?.url?.includes('/auth/login') ||
+      original?.url?.includes('/auth/logout');
+
+    if (error.response?.status === 401 && !original._retry && !isAuthEndpoint) {
       original._retry = true;
       try {
         const { data } = await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true });
@@ -33,9 +40,20 @@ api.interceptors.response.use(
           return api(original);
         }
       } catch {
+        // Refresh failed — clear local auth state
         if (typeof window !== 'undefined') {
           localStorage.removeItem('bkp_access_token');
-          window.location.href = '/login';
+          // Clear persisted Zustand store so pages know user is logged out
+          try {
+            const stored = localStorage.getItem('bkp-auth');
+            if (stored) {
+              const parsed = JSON.parse(stored);
+              parsed.state = { ...parsed.state, isAuthenticated: false, user: null, accessToken: null };
+              localStorage.setItem('bkp-auth', JSON.stringify(parsed));
+            }
+          } catch { /* ignore */ }
+          // Replace current history entry — avoids back-button loop
+          window.location.replace('/login');
         }
       }
     }
@@ -44,3 +62,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+

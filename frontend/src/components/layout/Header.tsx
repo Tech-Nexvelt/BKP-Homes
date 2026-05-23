@@ -30,6 +30,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (['/mainpage', '/explore', '/productspage', '/custom-furniture', '/interior-services'].includes(pathname)) return null;
+
   const userDropdownItems = [
     {
       key: 'dashboard',

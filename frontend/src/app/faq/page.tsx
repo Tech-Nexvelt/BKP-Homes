@@ -14,7 +14,7 @@ const faqs = [
       },
       {
         q: 'Do you ship internationally?',
-        a: 'Currently, our primary delivery network covers all of India. However, for bespoke enterprise orders, we do facilitate international shipping via specialized freight partners. Please contact support for a quote.'
+        a: 'Currently, our primary delivery network covers all of India. However, for BKP enterprise orders, we do facilitate international shipping via specialized freight partners. Please contact support for a quote.'
       },
       {
         q: 'How can I track the progress of my furniture?',

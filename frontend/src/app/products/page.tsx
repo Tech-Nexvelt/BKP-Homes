@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { useProducts } from '@/hooks/useProducts';
 import { ProductGrid } from '@/components/features/ProductGrid';
-import { ProductFilters } from '@/components/features/ProductFilters';
 import type { ProductFilters as FiltersType } from '@/types/product.types';
 
 export default function ProductsPage() {
@@ -12,7 +11,7 @@ export default function ProductsPage() {
     limit: 12,
   });
 
-  const { products, categories, isLoadingProducts } = useProducts(filters);
+  const { products, isLoadingProducts } = useProducts(filters);
 
   return (
     <div className="container-luxora pt-32 pb-24 flex flex-col gap-10">
@@ -28,18 +27,8 @@ export default function ProductsPage() {
       </div>
 
       {/* Main catalog workspace */}
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
-        {/* Filters Sidebar */}
-        <ProductFilters
-          categories={categories}
-          filters={filters}
-          onChange={(newFilters) => setFilters(newFilters)}
-        />
-
-        {/* Product Grid showcase */}
-        <div className="flex-1 w-full">
-          <ProductGrid products={products} isLoading={isLoadingProducts} />
-        </div>
+      <div className="w-full">
+        <ProductGrid products={products} isLoading={isLoadingProducts} />
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ export default function ContactPage() {
             transition={{ delay: 0.2 }}
             className="text-muted-fg max-w-xl mx-auto text-sm md:text-base"
           >
-            Whether you're looking for bespoke furniture or a complete interior transformation, our design experts are ready to assist you.
+            Whether you're looking for BKP furniture or a complete interior transformation, our design experts are ready to assist you.
           </motion.p>
         </div>
 

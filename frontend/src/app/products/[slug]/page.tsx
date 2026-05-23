@@ -16,6 +16,7 @@ import { ReviewCard } from '@/components/features/ReviewCard';
 import { ReviewForm } from '@/components/features/ReviewForm';
 import { Star, Shield, Hammer, Truck, Heart, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function ProductDetailsPage() {
   const params = useParams();
@@ -25,6 +26,7 @@ export default function ProductDetailsPage() {
   const { format } = useCurrency();
   const { addItem } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { isAuthenticated } = useAuth();
 
   const [activeImage, setActiveImage] = React.useState('');
   const [activeTab, setActiveTab] = React.useState('description');
@@ -187,13 +189,21 @@ export default function ProductDetailsPage() {
 
           {/* Pricing parameters */}
           <div className="flex items-baseline gap-4 pb-8 border-b border-[#7D7A74]/15">
-            <span className="text-3xl font-light text-[#C8A96B] tracking-tight">
-              {format(activePrice)}
-            </span>
-            {isDiscounted && (
-              <span className="text-sm text-[#7D7A74] line-through font-light">
-                {format(product.price)}
-              </span>
+            {isAuthenticated ? (
+              <>
+                <span className="text-3xl font-light text-[#C8A96B] tracking-tight">
+                  {format(activePrice)}
+                </span>
+                {isDiscounted && (
+                  <span className="text-sm text-[#7D7A74] line-through font-light">
+                    {format(product.price)}
+                  </span>
+                )}
+              </>
+            ) : (
+              <Link href="/login" className="text-sm font-semibold text-[#C8A96B] hover:text-[#D9BB84] transition-colors uppercase tracking-wider">
+                Register/Login to view price
+              </Link>
             )}
             {product.stock && product.stock <= 3 && (
               <span className="ml-4 text-[9px] tracking-[0.2em] font-semibold uppercase px-3 py-1 bg-red-950/20 text-red-400 border border-red-800/20">
@@ -220,32 +230,43 @@ export default function ProductDetailsPage() {
 
           {/* Purchase actions */}
           <div className="flex flex-col gap-4">
-            <div className="flex gap-4">
-              {/* Qty selectors */}
-              <div className="flex items-center border border-[#7D7A74]/20 rounded-none bg-[#0B0B0C]/40 overflow-hidden h-12 px-2">
-                <button
-                  onClick={() => setQty((q) => Math.max(q - 1, 1))}
-                  className="w-8 h-8 flex items-center justify-center text-[#B8B3AA] hover:text-[#C8A96B] transition-colors font-light"
-                >
-                  -
-                </button>
-                <span className="w-10 text-center text-xs font-semibold text-[#F5F2ED]">{qty}</span>
-                <button
-                  onClick={() => setQty((q) => q + 1)}
-                  className="w-8 h-8 flex items-center justify-center text-[#B8B3AA] hover:text-[#C8A96B] transition-colors font-light"
-                >
-                  +
-                </button>
-              </div>
+            {isAuthenticated ? (
+              <div className="flex gap-4">
+                {/* Qty selectors */}
+                <div className="flex items-center border border-[#7D7A74]/20 rounded-none bg-[#0B0B0C]/40 overflow-hidden h-12 px-2">
+                  <button
+                    onClick={() => setQty((q) => Math.max(q - 1, 1))}
+                    className="w-8 h-8 flex items-center justify-center text-[#B8B3AA] hover:text-[#C8A96B] transition-colors font-light"
+                  >
+                    -
+                  </button>
+                  <span className="w-10 text-center text-xs font-semibold text-[#F5F2ED]">{qty}</span>
+                  <button
+                    onClick={() => setQty((q) => q + 1)}
+                    className="w-8 h-8 flex items-center justify-center text-[#B8B3AA] hover:text-[#C8A96B] transition-colors font-light"
+                  >
+                    +
+                  </button>
+                </div>
 
-              <Button 
-                variant="gold" 
-                className="flex-1 h-12" 
-                onClick={handleAddToCart}
-              >
-                Acquire Curation
-              </Button>
-            </div>
+                <Button 
+                  variant="gold" 
+                  className="flex-1 h-12" 
+                  onClick={handleAddToCart}
+                >
+                  Acquire Curation
+                </Button>
+              </div>
+            ) : (
+              <Link href="/login" className="w-full">
+                <Button 
+                  variant="gold" 
+                  className="w-full h-12"
+                >
+                  Login to Acquire Curation
+                </Button>
+              </Link>
+            )}
 
             <Button
               variant={isFavorite ? 'primary' : 'outline'}

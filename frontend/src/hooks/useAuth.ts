@@ -10,7 +10,7 @@ import type { LoginPayload, SignupPayload, OtpPayload } from '@/types/auth.types
 export function useAuth() {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { user, accessToken, isAuthenticated, setAuth, clearAuth, updateUser } = useAuthStore();
+  const { user, accessToken, isAuthenticated, _hasHydrated, setAuth, clearAuth, updateUser } = useAuthStore();
   const clearCart = useCartStore((s) => s.clearCart);
   const clearWishlist = useWishlistStore((s) => s.clear);
 
@@ -24,6 +24,10 @@ export function useAuth() {
     },
     enabled: !!accessToken,
     retry: false,
+    staleTime: 5 * 60 * 1000,   // don't re-fetch for 5 minutes
+    gcTime: 10 * 60 * 1000,     // keep in cache for 10 minutes
+    refetchOnWindowFocus: false, // don't re-fetch when tab is focused
+    refetchOnMount: false,       // don't re-fetch on every component mount
   });
 
   const loginMutation = useMutation({
@@ -36,7 +40,7 @@ export function useAuth() {
       if (userData.role === 'ADMIN') {
         router.push('/admin');
       } else {
-        router.push('/dashboard');
+        router.push('/mainpage');
       }
     },
     onError: (err: any) => {
@@ -62,7 +66,7 @@ export function useAuth() {
       setAuth(userData, token);
       queryClient.setQueryData(['auth-me'], userData);
       toast.success('Account verified successfully!');
-      router.push('/dashboard');
+      router.push('/mainpage');
     },
     onError: (err: any) => {
       toast.error(err.response?.data?.message || 'Verification failed');
@@ -92,6 +96,7 @@ export function useAuth() {
   return {
     user,
     isAuthenticated,
+    isHydrated: _hasHydrated,
     isLoadingProfile: meQuery.isLoading,
     login: loginMutation.mutate,
     isLoggingIn: loginMutation.isPending,

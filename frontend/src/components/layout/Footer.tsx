@@ -2,12 +2,16 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Instagram, Facebook, Youtube, Twitter, ArrowRight, ArrowUp } from 'lucide-react';
 
 export function Footer() {
+  const pathname = usePathname();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (['/mainpage', '/explore', '/productspage', '/custom-furniture', '/interior-services'].includes(pathname)) return null;
 
   return (
     <footer className="bg-[#0B0B0C] border-t border-[#D9BB84]/10 pt-24 pb-12 text-[#B8B3AA] relative overflow-hidden">

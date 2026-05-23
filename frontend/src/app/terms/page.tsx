@@ -34,7 +34,7 @@ export default function TermsPage() {
             Welcome to BKP Luxury Furniture. By accessing our website, purchasing our products, or utilizing our interior design services, you agree to be bound by these Terms and Conditions. Please read them carefully.
           </p>
 
-          <h2>2. Custom & Bespoke Orders</h2>
+          <h2>2. Custom & BKP Orders</h2>
           <p>
             All custom furniture orders are made to the exact specifications agreed upon during the consultation phase. Once manufacturing has commenced (indicated in your tracking dashboard), orders cannot be canceled or structurally modified without incurring additional charges. 
           </p>

@@ -2,36 +2,71 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Search, Mic, SlidersHorizontal, ChevronLeft, ChevronRight, Star, ShoppingBag, Heart } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Mic, SlidersHorizontal, ChevronLeft, ChevronRight, Star, ShoppingBag, Heart, X } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { staticProducts } from '@/lib/staticProducts';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { MainTopbar } from '@/components/layout/MainTopbar';
 
 export default function MainPage() {
   const { user, isAuthenticated, isHydrated } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = React.useState('');
   const sliderRef = React.useRef<HTMLDivElement>(null);
+  const searchInputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     if (isHydrated && !isAuthenticated) router.push('/login');
   }, [isHydrated, isAuthenticated, router]);
 
+  // Auto-scroll and focus search bar when arriving from topbar search icon
+  React.useEffect(() => {
+    if (searchParams?.get('focus') === 'search' && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => searchInputRef.current?.focus(), 400);
+      }, 300);
+    }
+  }, [searchParams]);
+
   // Shuffle and reorder products for different sections to avoid repetition
-  const topRated = [...staticProducts].sort((a, b) => b.price - a.price); // Sort by highest price
-  const mostBought = [...staticProducts.slice(10), ...staticProducts.slice(0, 10)]; // Shifted array
-  const recommendedAI = [...staticProducts].filter((_, i) => i % 2 !== 0); // Odd indices
+  const topRated = [...staticProducts].sort((a, b) => b.price - a.price);
+  const mostBought = [...staticProducts.slice(10), ...staticProducts.slice(0, 10)];
+  const recommendedAI = [...staticProducts].filter((_, i) => i % 2 !== 0);
   const recentItems = [...staticProducts].reverse();
+
+  // Live search filter — runs on every keystroke
+  const trimmed = searchQuery.trim().toLowerCase();
+  const searchResults = trimmed
+    ? staticProducts.filter(p => {
+        const name     = typeof p.name     === 'string' ? p.name.toLowerCase() : '';
+        // category can be a string OR an object {id, name, slug, ...}
+        const category = typeof p.category === 'string'
+          ? p.category.toLowerCase()
+          : (p.category as any)?.name?.toLowerCase?.() ?? '';
+        const material = typeof p.material === 'string' ? p.material.toLowerCase() : '';
+        // tags can be strings OR objects {id, name, slug, ...}
+        const tags = Array.isArray(p.tags)
+          ? p.tags.map(t => typeof t === 'string' ? t.toLowerCase() : (t as any)?.name?.toLowerCase?.() ?? '')
+          : [];
+        return name.includes(trimmed) || category.includes(trimmed) || material.includes(trimmed) || tags.some(t => t.includes(trimmed));
+      })
+    : [];
+  const isSearching = trimmed.length > 0;
 
   const scroll = (dir: 'left' | 'right') => {
     sliderRef.current?.scrollBy({ left: dir === 'left' ? -300 : 300, behavior: 'smooth' });
   };
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) router.push(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+    e.preventDefault(); // stay on page — results shown inline
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    searchInputRef.current?.focus();
   };
 
   if (!isHydrated) return <div className="min-h-screen bg-[#0c0b0b]" />;
@@ -92,9 +127,20 @@ export default function MainPage() {
             <form onSubmit={handleSearch}>
               <div className="flex items-center bg-[#232222bb] border border-white/8 rounded-xl px-4 py-3 mb-4 focus-within:border-[#C8A96B]/40 transition-colors">
                 <Search className="w-4 h-4 text-[#6b6966] shrink-0" />
-                <input type="text" placeholder="Search" value={searchQuery}
+                <input
+                  id="main-search-input"
+                  ref={searchInputRef}
+                  type="text"
+                  placeholder="Search products, materials, categories…"
+                  value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 bg-transparent focus:outline-none text-sm text-[#F5F2ED] placeholder:text-[#6b6966] px-3" />
+                  className="flex-1 bg-transparent focus:outline-none text-sm text-[#F5F2ED] placeholder:text-[#6b6966] px-3"
+                />
+                {isSearching && (
+                  <button type="button" onClick={clearSearch} className="mr-2 text-[#6b6966] hover:text-[#F5F2ED] transition-colors shrink-0">
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
                 <Mic className="w-4 h-4 text-[#9E9B97] cursor-pointer hover:text-[#C8A96B] transition-colors mr-3 shrink-0" />
                 <button type="submit" className="w-8 h-8 bg-[#C8A96B] hover:bg-[#d6bc80] rounded-lg flex items-center justify-center transition-colors shrink-0">
                   <SlidersHorizontal className="w-3.5 h-3.5 text-black" />
@@ -113,6 +159,104 @@ export default function MainPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── INLINE SEARCH RESULTS ── */}
+      <AnimatePresence>
+        {isSearching && (
+          <motion.section
+            key="search-results"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="w-full max-w-screen-2xl mx-auto px-8 py-10"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="text-[11px] text-[#C8A96B] font-semibold uppercase tracking-widest mb-1">Search Results</p>
+                <h2 className="text-2xl font-bold text-[#F5F2ED]">
+                  {searchResults.length > 0
+                    ? <>Showing <span className="text-[#C8A96B]">{searchResults.length}</span> result{searchResults.length !== 1 ? 's' : ''} for &ldquo;{searchQuery}&rdquo;</>
+                    : <>No results for &ldquo;{searchQuery}&rdquo;</>}
+                </h2>
+              </div>
+              <button
+                onClick={clearSearch}
+                className="flex items-center gap-1.5 text-[11px] text-[#8a8784] hover:text-[#C8A96B] border border-white/10 hover:border-[#C8A96B]/30 px-3 py-1.5 rounded-full transition-all"
+              >
+                <X className="w-3 h-3" /> Clear
+              </button>
+            </div>
+
+            {searchResults.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {searchResults.map((product) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-[#141313] border border-white/6 rounded-2xl overflow-hidden group hover:border-[#C8A96B]/25 hover:shadow-xl hover:shadow-black/40 transition-all duration-300"
+                  >
+                    <div className="relative aspect-square overflow-hidden bg-[#1c1b1b]">
+                      <img
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="w-full h-full object-cover brightness-[0.88] group-hover:scale-105 transition-transform duration-500"
+                      />
+                      {product.tags?.[0] && (
+                        <span className="absolute top-2 left-2 bg-[#1A7A68] text-white text-[7.5px] font-bold px-2 py-[2px] rounded-full uppercase tracking-wide">
+                          {typeof product.tags[0] === 'string' ? product.tags[0] : (product.tags[0] as any)?.name ?? ''}
+                        </span>
+                      )}
+                      <button className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-[#C8A96B]/30 transition-all">
+                        <Heart className="w-3 h-3 text-white" />
+                      </button>
+                    </div>
+                    <div className="p-3">
+                      <div className="flex items-center gap-0.5 mb-1">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-[#C8A96B] text-[#C8A96B]" />)}
+                      </div>
+                      <Link href={`/products/${product.slug}`}>
+                        <h3 className="text-[11px] font-semibold text-[#E8E4DF] hover:text-[#C8A96B] transition-colors truncate mb-0.5">{product.name}</h3>
+                      </Link>
+                      {product.category && (
+                        <p className="text-[9px] text-[#6b6966] mb-1 truncate">
+                          {typeof product.category === 'string' ? product.category : (product.category as any)?.name ?? ''}
+                        </p>
+                      )}
+                      <p className="text-[12px] font-bold text-[#F5F2ED] mb-2">
+                        ₹{((product.salePrice ?? product.price) / 1000).toFixed(1)}k
+                        {product.salePrice && <span className="text-[9px] text-[#555350] line-through ml-1.5 font-normal">₹{(product.price / 1000).toFixed(1)}k</span>}
+                      </p>
+                      <button className="w-full py-1.5 bg-[#C8A96B] hover:bg-[#d6bc80] text-black text-[10px] font-bold rounded-lg transition-all flex items-center justify-center gap-1">
+                        <ShoppingBag className="w-2.5 h-2.5" /> Add to Cart
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <Search className="w-12 h-12 text-[#2e2d2d] mb-4" />
+                <p className="text-[#4a4948] text-sm">No products match &ldquo;{searchQuery}&rdquo;</p>
+                <p className="text-[#333231] text-xs mt-1">Try searching by name, material, or category</p>
+              </div>
+            )}
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* ── NORMAL SECTIONS — hidden while searching ── */}
+      <AnimatePresence>
+        {!isSearching && (
+          <motion.div
+            key="normal-sections"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
 
       {/* ── TOP RATED SLIDER ── */}
       <section className="w-full max-w-screen-2xl mx-auto px-8 py-10">
@@ -188,6 +332,10 @@ export default function MainPage() {
 
       {/* ── RECENTLY VIEWED FURNITURE ── */}
       <RecentlyViewedSection products={recentItems} />
+
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

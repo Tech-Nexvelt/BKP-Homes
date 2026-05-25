@@ -2,17 +2,24 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
-  const { login, isLoggingIn } = useAuth();
+  const { login, isLoggingIn, isAuthenticated, isHydrated } = useAuth();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (isHydrated && isAuthenticated) {
+      router.push('/mainpage');
+    }
+  }, [isHydrated, isAuthenticated, router]);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
     if (!email || !password) return;
     login({ email, password });
   };

@@ -27,6 +27,8 @@ import dynamic from 'next/dynamic';
 import { useAuth } from '@/hooks/useAuth';
 import { staticProducts } from '@/lib/staticProducts';
 
+import { useRouter } from 'next/navigation';
+
 const ShowroomScene = dynamic(
   () => import('@/components/features/ShowroomScene').then(mod => mod.ShowroomScene),
   { ssr: false }
@@ -38,9 +40,16 @@ const Room360Viewer = dynamic(
 );
 
 export default function HomePage() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isHydrated } = useAuth();
+  const router = useRouter();
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
   const [activeCollection, setActiveCollection] = React.useState(0);
+
+  React.useEffect(() => {
+    if (isHydrated && isAuthenticated) {
+      router.push('/mainpage');
+    }
+  }, [isHydrated, isAuthenticated, router]);
 
   const ambientGlows = [
     { className: "absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-[#C8A96B]/5 blur-[120px] rounded-full" },
@@ -199,29 +208,27 @@ export default function HomePage() {
 
         <div className="container-luxora relative z-20 w-full flex flex-col justify-center h-full pt-24">
           <div className="max-w-4xl">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[10px] font-semibold tracking-[0.3em] text-[#C8A96B] uppercase mb-4 block"
+            >
+              Architectural Philosophy
+            </motion.span>
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-[#F5F2ED] leading-[1.1] tracking-tight mb-6 uppercase"
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-[#F5F2ED] leading-[1.1] tracking-tight mb-10"
             >
-              ELEVATE YOUR SPACE: <br />
-              <span className="text-[#C8A96B]">BKP INTERIOR DESIGN SERVICES</span>
+              An unwavering commitment to heirloom quality materials, precision alignment, and understated luxury.
             </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="text-sm md:text-base text-[#B8B3AA] leading-relaxed max-w-2xl mb-12 font-light"
-            >
-              Discover BKP furniture and comprehensive design solutions tailored to your unique architectural parameters. Our curated spaces redefine modern luxury.
-            </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             >
               <Link href="/interior-services">
                 <button className="h-14 px-10 bg-[#C8A96B] hover:bg-[#D9BB84] text-black text-xs tracking-[0.2em] font-bold uppercase transition-all duration-300 shadow-xl shadow-[#C8A96B]/20 hover:-translate-y-1 rounded-sm">
@@ -238,15 +245,6 @@ export default function HomePage() {
       {/* 2. Brand Philosophy Section */}
       <section className="bg-[#0B0B0C] border-y border-[#D9BB84]/10 relative z-20 py-24">
         <div className="container-luxora">
-          <div className="max-w-3xl mb-20">
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-[#C8A96B] uppercase mb-4 block">
-              Architectural Philosophy
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl font-light text-[#F5F2ED] tracking-tight leading-tight">
-              An unwavering commitment to heirloom quality materials, precision alignment, and understated luxury.
-            </h2>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 divide-y md:divide-y-0 lg:divide-x divide-[#7D7A74]/15">
             {brandPillars.map((pillar, i) => (
               <motion.div 
@@ -340,7 +338,7 @@ export default function HomePage() {
 
                 <div className="flex items-baseline gap-4 mb-10">
                   <span className="text-[10px] tracking-wider text-[#7D7A74] uppercase font-semibold">Estimates</span>
-                  {isAuthenticated ? (
+                  {(isHydrated && isAuthenticated) ? (
                     <span className="text-2xl font-light text-[#C8A96B] tracking-tight">{collections[activeCollection].price}</span>
                   ) : (
                     <Link href="/login" className="text-xs font-semibold text-[#C8A96B] hover:text-[#D9BB84] transition-colors uppercase tracking-wider">
@@ -727,7 +725,7 @@ export default function HomePage() {
       </section>
 
       {/* 8. Most Bought Products (Logged-in only) */}
-      {isAuthenticated && (
+      {(isHydrated && isAuthenticated) && (
         <section className="bg-[#050505] py-24 relative z-20 border-t border-[#D9BB84]/10">
           <div className="container-luxora">
             <div className="flex items-center justify-between mb-10">
@@ -769,7 +767,7 @@ export default function HomePage() {
       )}
 
       {/* 9. Related Products Grid (Logged-in only) */}
-      {isAuthenticated && (
+      {(isHydrated && isAuthenticated) && (
         <section className="bg-[#0B0B0C] py-24 relative z-20 border-t border-[#D9BB84]/10">
           <div className="container-luxora">
             <h2 className="font-display text-2xl md:text-3xl font-bold text-[#F5F2ED] tracking-tight uppercase mb-12">

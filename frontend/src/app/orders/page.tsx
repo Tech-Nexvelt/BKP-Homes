@@ -60,7 +60,7 @@ const RECOMMENDED = [
 
 /* ─── Sub-components ───────────────────────────────────────── */
 
-function SummaryCard({ icon: Icon, label, value, color }: { icon: React.ElementType; label: string; value: number; color: string }) {
+function SummaryCard({ icon: Icon, label, value, color }: { icon: any; label: string; value: number; color: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}

@@ -44,7 +44,7 @@ export default function MainPage() {
         const name     = typeof p.name     === 'string' ? p.name.toLowerCase() : '';
         // category can be a string OR an object {id, name, slug, ...}
         const category = typeof p.category === 'string'
-          ? p.category.toLowerCase()
+          ? String(p.category).toLowerCase()
           : (p.category as any)?.name?.toLowerCase?.() ?? '';
         const material = typeof p.material === 'string' ? p.material.toLowerCase() : '';
         // tags can be strings OR objects {id, name, slug, ...}

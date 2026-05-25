@@ -9,7 +9,7 @@ import { staticProducts } from '@/lib/staticProducts';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { MainTopbar } from '@/components/layout/MainTopbar';
 
-export default function MainPage() {
+function MainPageContent() {
   const { user, isAuthenticated, isHydrated } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -337,6 +337,14 @@ export default function MainPage() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function MainPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen bg-[#0c0b0b]" />}>
+      <MainPageContent />
+    </React.Suspense>
   );
 }
 

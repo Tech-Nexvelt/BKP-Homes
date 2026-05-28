@@ -33,7 +33,7 @@ const PROGRESS_STEPS = [
 
 const ACTIVE_ORDERS = [
   {
-    id: '#BKP005421',
+    id: '#Archana005421',
     name: "'AURELIA' Armchair",
     img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400',
     estimated: 'Oct 28, 2023',
@@ -45,9 +45,9 @@ const ACTIVE_ORDERS = [
 const ORDER_HISTORY = [
   { id: "#ORION' Sofa",  date: 'Sep 15, 2023', amount: '$12,500', status: 'DELIVERED', payment: 'Mastercard *4321', img: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=100' },
   { id: '#LYRA Table',   date: 'Sep 15, 2023', amount: '$9,800',  status: 'DELIVERED', payment: 'Mastercard *4321', img: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=100' },
-  { id: '#BKP003418',    date: 'Aug 22, 2023', amount: '$6,200',  status: 'DELIVERED', payment: 'Mastercard *4321', img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=100' },
-  { id: '#BKP003419',    date: 'Jul 10, 2023', amount: '$3,500',  status: 'DELIVERED', payment: 'Visa *9812',       img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=100' },
-  { id: '#BKP002987',    date: 'Jun 05, 2023', amount: '$11,200', status: 'DELIVERED', payment: 'Visa *9812',       img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=100' },
+  { id: '#Archana003418',    date: 'Aug 22, 2023', amount: '$6,200',  status: 'DELIVERED', payment: 'Mastercard *4321', img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=100' },
+  { id: '#Archana003419',    date: 'Jul 10, 2023', amount: '$3,500',  status: 'DELIVERED', payment: 'Visa *9812',       img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=100' },
+  { id: '#Archana002987',    date: 'Jun 05, 2023', amount: '$11,200', status: 'DELIVERED', payment: 'Visa *9812',       img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=100' },
 ];
 
 const ORDER_HISTORY_2 = ORDER_HISTORY.slice(0, 2);
@@ -361,10 +361,10 @@ export default function OrdersPage() {
             <div className="bg-[#141313] border border-white/6 rounded-2xl p-5 flex-1">
               <p className="text-[11px] font-bold text-[#F5F2ED] uppercase tracking-wider mb-3">Invoice & Payment</p>
               <div className="flex flex-col gap-2 text-[10px] text-[#9E9B97]">
-                <p>Order #BKP003421 – Oct 20 – $12,500 –{' '}
+                <p>Order #Archana003421 – Oct 20 – $12,500 –{' '}
                   <button className="text-[#C8A96B] underline hover:text-[#d6bc80] transition-colors">[Download]</button>
                 </p>
-                <p>Order #BKP003418 – Sep 15 – $8,900 –{' '}
+                <p>Order #Archana003418 – Sep 15 – $8,900 –{' '}
                   <button className="text-[#C8A96B] underline hover:text-[#d6bc80] transition-colors">[Download]</button>
                 </p>
                 <p className="mt-2">Payment Method: <span className="text-[#F5F2ED]">MASTERCARD *4321 (Default)</span></p>

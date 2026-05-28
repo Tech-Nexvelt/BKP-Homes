@@ -24,7 +24,7 @@ export function Footer() {
           {/* Column 1: Brand & Philosophy */}
           <div className="flex flex-col gap-6 lg:col-span-1">
             <Link href="/" className="font-display text-3xl tracking-widest text-[#C8A96B] hover:text-[#D9BB84] transition-colors">
-              BKP HOMES
+              Archana Furniture
             </Link>
             <p className="text-xs leading-relaxed text-[#7D7A74] max-w-[240px]">
               Crafting premium custom hardwood furniture and modular interior curations. An exquisite blend of heritage craftsmanship and modern minimalism.
@@ -94,7 +94,7 @@ export function Footer() {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-[#7D7A74]/15 relative">
           <p className="text-[10px] tracking-wider text-[#7D7A74]">
-            © {new Date().getFullYear()} BKP HOMES. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} Archana Furniture. ALL RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-6 text-[10px] tracking-wider text-[#7D7A74]">
             <Link href="/privacy-policy" className="hover:text-[#C8A96B] transition-colors">PRIVACY POLICY</Link>

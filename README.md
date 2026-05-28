@@ -1,6 +1,6 @@
-# BKP-Homes 
+# Archana-Furniture 
 
-BKP-Homes  is a premium, state-of-the-art luxury furniture and e-commerce platform. It provides customers with an immersive shopping experience featuring interactive 3D modeling, custom furniture design wizards, real-time manufacturing and order tracking, and a comprehensive admin control center.
+Archana-Furniture  is a premium, state-of-the-art luxury furniture and e-commerce platform. It provides customers with an immersive shopping experience featuring interactive 3D modeling, custom furniture design wizards, real-time manufacturing and order tracking, and a comprehensive admin control center.
 
 Built with a modern web stack utilizing **Next.js 15**, **Three.js (React Three Fiber)**, **Express**, and **Prisma ORM with PostgreSQL**.
 
@@ -54,7 +54,7 @@ Built with a modern web stack utilizing **Next.js 15**, **Three.js (React Three 
 ## 📂 Project Structure
 
 ```
-bkp-homes/
+archana-furniture/
 ├── backend/
 │   ├── src/
 │   │   ├── config/             # Configuration files (cloudinary, cors, jwt, database, etc.)

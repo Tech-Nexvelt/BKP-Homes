@@ -49,7 +49,7 @@ app.use('/api', generalLimiter);
 
 // Health check
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'BKP API' });
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'Archana API' });
 });
 
 // API Routes

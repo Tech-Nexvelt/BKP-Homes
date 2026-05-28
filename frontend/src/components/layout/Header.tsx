@@ -77,7 +77,7 @@ export function Header() {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center group">
           <span className="font-display text-2xl tracking-[0.2em] text-[#C8A96B] font-semibold group-hover:text-[#D9BB84] transition-colors">
-            BKP HOMES
+            Archana Furniture
           </span>
         </Link>
 

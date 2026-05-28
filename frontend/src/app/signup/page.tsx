@@ -37,7 +37,7 @@ export default function SignupPage() {
           <div className="w-full max-w-md">
             
             <h1 className="font-display text-3xl md:text-4xl font-bold text-[#F5F2ED] tracking-tight mb-3 uppercase leading-tight">
-              JOIN BKP: CREATE <br />YOUR ACCOUNT
+              JOIN Archana: CREATE <br />YOUR ACCOUNT
             </h1>
             <p className="text-xs text-[#B8B3AA] mb-8 leading-relaxed font-light">
               Access exclusive collections, explore premium personalized luxury, and track your custom orders seamlessly.
@@ -163,18 +163,18 @@ export default function SignupPage() {
           </div>
         </div>
 
-        {/* Right Side - Image with BKP branding */}
+        {/* Right Side - Image with Archana branding */}
         <div className="relative w-full lg:w-1/2 min-h-[40vh] lg:min-h-screen overflow-hidden order-1 lg:order-2">
           <img 
             src="/images/bedroom_luxury.png" 
-            alt="BKP Luxury Bedroom" 
+            alt="Archana Luxury Bedroom" 
             className="absolute inset-0 w-full h-full object-cover brightness-[0.75]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/20" />
           
-          {/* BKP Logo Overlay */}
+          {/* Archana Logo Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-8">
-            <h2 className="font-display text-6xl md:text-8xl font-bold text-[#F5F2ED] tracking-widest mb-6">BKP</h2>
+            <h2 className="font-display text-6xl md:text-8xl font-bold text-[#F5F2ED] tracking-widest mb-6">Archana</h2>
             <p className="text-xs text-[#B8B3AA] text-center max-w-sm leading-relaxed font-light">
               Exceptional handcrafted luxury furniture, curated interiors, and comprehensive design solutions tailored to your unique architectural parameters.
             </p>
@@ -182,12 +182,12 @@ export default function SignupPage() {
         </div>
       </section>
 
-      {/* Section 2: BKP Benefits */}
+      {/* Section 2: Archana Benefits */}
       <section className="py-24 bg-[#050505] border-t border-[#D9BB84]/10">
         <div className="container-luxora">
           <div className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#F5F2ED] tracking-tight uppercase mb-3">
-              BKP BENEFITS
+              Archana BENEFITS
             </h2>
             <p className="text-xs text-[#B8B3AA] font-light">
               Curated & minimal multi-angle product and project showcase
@@ -249,10 +249,10 @@ export default function SignupPage() {
 
           <div className="space-y-6 text-sm text-[#B8B3AA] font-light leading-relaxed">
             <p>
-              Your authentication experience at BKP is designed to ensure maximum privacy and protection for your confidential information. Our advanced authentication layer utilizes industry-standard encryption protocols, economic credential flow, and multi-factor verification to guarantee unmatched security throughout your entire session.
+              Your authentication experience at Archana is designed to ensure maximum privacy and protection for your confidential information. Our advanced authentication layer utilizes industry-standard encryption protocols, economic credential flow, and multi-factor verification to guarantee unmatched security throughout your entire session.
             </p>
             <p>
-              BKP implements fine-grained role-based access controls to keep administrative tools securely partitioned from standard user interfaces. Our token-based authentication ensures your session persists seamlessly across devices while maintaining security compliance with current data protection standards.
+              Archana implements fine-grained role-based access controls to keep administrative tools securely partitioned from standard user interfaces. Our token-based authentication ensures your session persists seamlessly across devices while maintaining security compliance with current data protection standards.
             </p>
             <p>
               Our platform supports secure social login integration with Google and Apple, providing a streamlined, password-free authentication option without compromising the integrity of your account security profile.

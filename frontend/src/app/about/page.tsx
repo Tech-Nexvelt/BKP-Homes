@@ -64,7 +64,7 @@ export default function AboutPage() {
             transition={{ delay: 0.2 }}
             className="text-muted-fg text-sm md:text-base max-w-2xl mt-6 leading-relaxed"
           >
-            At BKP, we don't just build furniture; we curate experiences. Our legacy is built on the foundation of uncompromising quality, innovative design, and a deep respect for the art of woodworking.
+            At Archana, we don't just build furniture; we curate experiences. Our legacy is built on the foundation of uncompromising quality, innovative design, and a deep respect for the art of woodworking.
           </motion.p>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default function AboutPage() {
         <div className="container-luxora">
           <div className="text-center mb-16">
             <span className="text-xs font-bold text-green tracking-widest uppercase">Our Principles</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3">The Pillars of BKP</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3">The Pillars of Archana</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

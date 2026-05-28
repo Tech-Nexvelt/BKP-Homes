@@ -30,18 +30,18 @@ export default function LoginPage() {
       {/* Section 1: Hero Login Split */}
       <section className="relative w-full min-h-screen flex flex-col lg:flex-row">
         
-        {/* Left Side - Image with BKP branding */}
+        {/* Left Side - Image with Archana branding */}
         <div className="relative w-full lg:w-1/2 min-h-[40vh] lg:min-h-screen overflow-hidden">
           <img 
             src="/images/login_study_room.png" 
-            alt="BKP Luxury Study Room" 
+            alt="Archana Luxury Study Room" 
             className="absolute inset-0 w-full h-full object-cover brightness-[0.75]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/20" />
           
-          {/* BKP Logo Overlay */}
+          {/* Archana Logo Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-8">
-            <h2 className="font-display text-6xl md:text-8xl font-bold text-[#F5F2ED] tracking-widest mb-6">BKP</h2>
+            <h2 className="font-display text-6xl md:text-8xl font-bold text-[#F5F2ED] tracking-widest mb-6">Archana</h2>
             <p className="text-xs text-[#B8B3AA] text-center max-w-sm leading-relaxed font-light">
               Exceptional handcrafted luxury furniture, curated interiors, and comprehensive design solutions tailored to your unique architectural parameters.
             </p>
@@ -53,7 +53,7 @@ export default function LoginPage() {
           <div className="w-full max-w-sm">
             
             <h1 className="font-display text-3xl md:text-4xl font-bold text-[#F5F2ED] tracking-tight mb-3 uppercase">
-              LOG IN TO BKP
+              LOG IN TO Archana
             </h1>
             <p className="text-xs text-[#B8B3AA] mb-10 leading-relaxed font-light">
               Access your exclusive account, explore premium collections, and experience personalized luxury.
@@ -130,7 +130,7 @@ export default function LoginPage() {
             {/* Sign Up Link */}
             <div className="text-center mt-8">
               <p className="text-xs text-[#7D7A74]">
-                New to BKP?{' '}
+                New to Archana?{' '}
                 <Link href="/signup" className="font-bold text-[#C8A96B] hover:text-[#D9BB84] transition-colors uppercase tracking-wider">
                   Sign Up
                 </Link>
@@ -140,12 +140,12 @@ export default function LoginPage() {
         </div>
       </section>
 
-      {/* Section 2: Experience BKP */}
+      {/* Section 2: Experience Archana */}
       <section className="py-24 bg-[#050505] border-t border-[#D9BB84]/10">
         <div className="container-luxora">
           <div className="text-center mb-16">
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#F5F2ED] tracking-tight uppercase mb-3">
-              EXPERIENCE BKP
+              EXPERIENCE Archana
             </h2>
             <p className="text-xs text-[#B8B3AA] font-light">
               Curated & minimal multi-angle product and project showcase
@@ -207,10 +207,10 @@ export default function LoginPage() {
 
           <div className="space-y-6 text-sm text-[#B8B3AA] font-light leading-relaxed">
             <p>
-              Your authentication experience at BKP is designed to ensure maximum privacy and protection for your confidential information. Our advanced authentication layer utilizes industry-standard encryption protocols, economic credential flow, and multi-factor verification to guarantee unmatched security throughout your entire session.
+              Your authentication experience at Archana is designed to ensure maximum privacy and protection for your confidential information. Our advanced authentication layer utilizes industry-standard encryption protocols, economic credential flow, and multi-factor verification to guarantee unmatched security throughout your entire session.
             </p>
             <p>
-              BKP implements fine-grained role-based access controls to keep administrative tools securely partitioned from standard user interfaces. Our token-based authentication ensures your session persists seamlessly across devices while maintaining security compliance with current data protection standards.
+              Archana implements fine-grained role-based access controls to keep administrative tools securely partitioned from standard user interfaces. Our token-based authentication ensures your session persists seamlessly across devices while maintaining security compliance with current data protection standards.
             </p>
             <p>
               Our platform supports secure social login integration with Google and Apple, providing a streamlined, password-free authentication option without compromising the integrity of your account security profile.

@@ -283,9 +283,9 @@ export default function ContactPage() {
                 {/* Image */}
                 <div className="relative h-40 overflow-hidden">
                   <img src={s.img} alt={s.name} className="w-full h-full object-cover brightness-75" />
-                  {/* BKP logo overlay */}
+                  {/* Archana logo overlay */}
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <span className="font-display text-2xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">BKP</span>
+                    <span className="font-display text-2xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">Archana</span>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#141313]/80 via-transparent to-transparent" />
                 </div>
@@ -472,12 +472,12 @@ export default function ContactPage() {
             >
               <img
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"
-                alt="BKP Studio"
+                alt="Archana Studio"
                 className="w-full h-full object-cover brightness-75"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                <span className="font-display text-3xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">BKP</span>
+                <span className="font-display text-3xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">Archana</span>
               </div>
             </motion.div>
           </div>
@@ -522,7 +522,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </motion.div>
-            {/* BKP building */}
+            {/* Archana building */}
             <motion.div
               initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: 0.08 }}
@@ -531,7 +531,7 @@ export default function ContactPage() {
             >
               <img
                 src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800"
-                alt="BKP Building"
+                alt="Archana Building"
                 className="w-full h-full object-cover brightness-65"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -540,7 +540,7 @@ export default function ContactPage() {
                 <span className="text-[9px] font-bold text-[#C8A96B]">Portfolio Members</span>
               </div>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                <span className="font-display text-2xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">BKP</span>
+                <span className="font-display text-2xl font-bold text-[#C8A96B] tracking-[0.25em] drop-shadow-lg">Archana</span>
               </div>
             </motion.div>
           </div>

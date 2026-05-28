@@ -34,6 +34,6 @@ export const useWishlistStore = create<WishlistState>()(
       setItems: (items) => set({ items }),
       clear: () => set({ items: [] }),
     }),
-    { name: 'bkp-wishlist', partialize: (s) => ({ items: s.items }) }
+    { name: 'archana-wishlist', partialize: (s) => ({ items: s.items }) }
   )
 );

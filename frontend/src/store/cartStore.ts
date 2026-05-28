@@ -78,6 +78,6 @@ export const useCartStore = create<CartState>()(
 
       count: () => get().items.reduce((sum, i) => sum + i.qty, 0),
     }),
-    { name: 'bkp-cart', partialize: (s) => ({ items: s.items }) }
+    { name: 'archana-cart', partialize: (s) => ({ items: s.items }) }
   )
 );

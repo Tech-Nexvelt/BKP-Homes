@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
         >
           <h2>1. Overview</h2>
           <p>
-            At BKP Luxury Furniture, your privacy is of paramount importance to us. This Privacy Policy outlines how we collect, use, store, and protect your personal and spatial data when you interact with our website and services.
+            At Archana Luxury Furniture, your privacy is of paramount importance to us. This Privacy Policy outlines how we collect, use, store, and protect your personal and spatial data when you interact with our website and services.
           </p>
 
           <h2>2. Information We Collect</h2>
@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
 
           <h2>7. Contact Us</h2>
           <p>
-            If you have any questions or concerns regarding our privacy practices, please reach out to our Data Protection Officer at privacy@bkpluxury.com.
+            If you have any questions or concerns regarding our privacy practices, please reach out to our Data Protection Officer at privacy@archanaluxury.com.
           </p>
         </motion.div>
       </div>

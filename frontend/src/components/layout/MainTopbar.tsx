@@ -74,7 +74,7 @@ export function MainTopbar() {
           href="/mainpage"
           className="font-display text-xl tracking-[0.2em] text-[#C8A96B] font-bold shrink-0 hover:text-[#D9BB84] transition-colors"
         >
-          BKP
+          Archana
         </Link>
 
         {/* Nav Links */}

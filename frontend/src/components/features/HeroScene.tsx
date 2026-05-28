@@ -71,7 +71,7 @@ export function HeroScene() {
           >
             <img
               src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
-              alt="Premium BKP interior styling"
+              alt="Premium Archana interior styling"
               className="h-full w-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
             />
             {/* Subtle overlay gradient to match the dark background */}

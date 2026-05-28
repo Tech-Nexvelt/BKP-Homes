@@ -41,7 +41,7 @@ export function MobileNav() {
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-dark-border">
                 <span className="font-display text-[15px] font-semibold tracking-[0.25em] text-[#C8A96B] uppercase">
-                  BKP HOMES
+                  Archana Furniture
                 </span>
                 <button
                   onClick={closeMobileNav}

@@ -12,5 +12,5 @@ export const transporter = nodemailer.createTransport({
 });
 
 export const mailerConfig = {
-  from: `BKP <${env.FROM_EMAIL}>`,
+  from: `Archana <${env.FROM_EMAIL}>`,
 };

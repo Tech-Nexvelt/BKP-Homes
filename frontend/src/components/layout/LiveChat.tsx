@@ -127,7 +127,7 @@ export function LiveChat() {
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
                   <div>
                     <h3 className="text-sm font-semibold tracking-wide text-gold-light">
-                      BKP Curations
+                      Archana Curations
                     </h3>
                     <p className="text-[10px] text-emerald-400">Design staff online</p>
                   </div>
@@ -178,7 +178,7 @@ export function LiveChat() {
                   <div className="h-full flex flex-col justify-between">
                     <div className="text-center py-6">
                       <MessageSquare className="h-8 w-8 text-gold mx-auto mb-2 animate-bounce" />
-                      <h4 className="text-sm font-semibold text-foreground">BKP Design Chat</h4>
+                      <h4 className="text-sm font-semibold text-foreground">Archana Design Chat</h4>
                       <p className="text-xs text-muted-fg max-w-xs mx-auto mt-1">
                         Connect live with our designers. Discuss custom models, size alterations, or space designs.
                       </p>

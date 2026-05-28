@@ -138,7 +138,7 @@ export default function HomePage() {
       count: '14 Pieces',
       video: 'https://assets.mixkit.co/videos/preview/mixkit-dining-room-interior-with-wooden-table-and-chairs-41684-large.mp4',
       desc: 'Formality meets sculptural art. Built around centerpiece slabs of premium marble and hand-planed teak, creating an heirloom setting for dinner gatherings.',
-      items: ['Majestic Verde Alpi Table', 'Heirloom Slatted Buffet', 'BKP Cane Dining Chairs', 'Brass Floating Chandelier'],
+      items: ['Majestic Verde Alpi Table', 'Heirloom Slatted Buffet', 'Archana Cane Dining Chairs', 'Brass Floating Chandelier'],
       href: '/products?category=dining'
     },
     { 
@@ -178,8 +178,8 @@ export default function HomePage() {
   }, [selectedCategory]);
 
   const testimonials = [
-    { name: 'Aishwarya Reddy', role: 'Architectural Director, Hyderabad', text: '"BKP HOMES has redefined our expectations of domestic craft. The teak joinery and customized fabric options match Italian standards at their finest."', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { name: 'Devendra Singhania', role: 'Penthouse Owner, Mumbai', text: '"The BKP consultation process was absolute white-glove service. From virtual renders to final installation, the experience felt exceptionally premium."', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
+    { name: 'Aishwarya Reddy', role: 'Architectural Director, Hyderabad', text: '"Archana Furniture has redefined our expectations of domestic craft. The teak joinery and customized fabric options match Italian standards at their finest."', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { name: 'Devendra Singhania', role: 'Penthouse Owner, Mumbai', text: '"The Archana consultation process was absolute white-glove service. From virtual renders to final installation, the experience felt exceptionally premium."', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
     { name: 'Dr. Kavitha Rao', role: 'Curator, Art House India', text: '"A flawless blend of tactile luxury and architectural geometry. Their pieces act as permanent sculptures in our lounge spaces."', image: 'https://randomuser.me/api/portraits/women/68.jpg' },
   ];
 
@@ -198,7 +198,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/35 z-10" />
           <motion.img 
             src="/images/luxury_interior_hero.png"
-            alt="BKP Interior Design Services"
+            alt="Archana Interior Design Services"
             initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -438,7 +438,7 @@ export default function HomePage() {
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="/images/craftsman_workshop.png" 
-            alt="BKP craftsman working with wood" 
+            alt="Archana craftsman working with wood" 
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
@@ -455,7 +455,7 @@ export default function HomePage() {
               className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#F5F2ED] leading-[1.1] tracking-tight mb-6 uppercase"
             >
               CRAFT YOUR MASTERPIECE: <br />
-              <span className="text-[#C8A96B]">BKP FURNITURE</span>
+              <span className="text-[#C8A96B]">Archana FURNITURE</span>
             </motion.h2>
 
             <motion.p 
@@ -465,7 +465,7 @@ export default function HomePage() {
               transition={{ duration: 1, delay: 0.15 }}
               className="text-sm md:text-base text-[#B8B3AA] leading-relaxed max-w-xl mb-10 font-light"
             >
-              Experience the art of handcrafted luxury. Our master craftsmen transform premium hardwoods into BKP furniture pieces, blending time-honored joinery techniques with contemporary design vision.
+              Experience the art of handcrafted luxury. Our master craftsmen transform premium hardwoods into Archana furniture pieces, blending time-honored joinery techniques with contemporary design vision.
             </motion.p>
 
             <motion.div 

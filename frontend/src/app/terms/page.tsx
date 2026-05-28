@@ -31,10 +31,10 @@ export default function TermsPage() {
         >
           <h2>1. Introduction</h2>
           <p>
-            Welcome to BKP Luxury Furniture. By accessing our website, purchasing our products, or utilizing our interior design services, you agree to be bound by these Terms and Conditions. Please read them carefully.
+            Welcome to Archana Luxury Furniture. By accessing our website, purchasing our products, or utilizing our interior design services, you agree to be bound by these Terms and Conditions. Please read them carefully.
           </p>
 
-          <h2>2. Custom & BKP Orders</h2>
+          <h2>2. Custom & Archana Orders</h2>
           <p>
             All custom furniture orders are made to the exact specifications agreed upon during the consultation phase. Once manufacturing has commenced (indicated in your tracking dashboard), orders cannot be canceled or structurally modified without incurring additional charges. 
           </p>
@@ -51,7 +51,7 @@ export default function TermsPage() {
 
           <h2>4. Delivery & Installation</h2>
           <p>
-            We strive to meet estimated delivery timelines; however, these are subject to change due to unforeseen logistical or material delays. BKP provides complimentary installation within Hyderabad city limits. Outstation deliveries will be handed over to our verified freight partners.
+            We strive to meet estimated delivery timelines; however, these are subject to change due to unforeseen logistical or material delays. Archana provides complimentary installation within Hyderabad city limits. Outstation deliveries will be handed over to our verified freight partners.
           </p>
 
           <h2>5. Returns & Refunds</h2>
@@ -61,12 +61,12 @@ export default function TermsPage() {
 
           <h2>6. Intellectual Property</h2>
           <p>
-            All 3D renders, CAD designs, blueprints, and website content remain the intellectual property of BKP. Unauthorized reproduction or use of our designs by third-party manufacturers is strictly prohibited.
+            All 3D renders, CAD designs, blueprints, and website content remain the intellectual property of Archana. Unauthorized reproduction or use of our designs by third-party manufacturers is strictly prohibited.
           </p>
 
           <h2>7. Contact Information</h2>
           <p>
-            For any legal inquiries regarding these terms, please contact us at legal@bkpluxury.com.
+            For any legal inquiries regarding these terms, please contact us at legal@archanaluxury.com.
           </p>
         </motion.div>
       </div>

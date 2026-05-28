@@ -140,7 +140,7 @@ export function BlueprintAnimation() {
       ctx.fillStyle = 'rgba(200, 169, 107, 0.35)';
       ctx.font = '8px monospace';
       ctx.textAlign = 'left';
-      ctx.fillText('BKP ASSEMBLY SCHEMATIC // CAD-902', 15, 25);
+      ctx.fillText('Archana ASSEMBLY SCHEMATIC // CAD-902', 15, 25);
       ctx.fillText('SCALE: 1:10 // MATERIAL: SOLID TEAK', 15, 37);
 
       // Center coords

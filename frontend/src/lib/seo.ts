@@ -10,7 +10,7 @@ interface SeoProps {
 
 export function buildSeo({
   title,
-  description = 'BKP — Premium handcrafted furniture for discerning homes. Explore luxury sofas, beds, dining sets and custom furniture from Hyderabad.',
+  description = 'Archana — Premium handcrafted furniture for discerning homes. Explore luxury sofas, beds, dining sets and custom furniture from Hyderabad.',
   image = '/og-default.jpg',
   url = APP_URL,
   type = 'website',

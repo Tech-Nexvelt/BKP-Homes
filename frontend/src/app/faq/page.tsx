@@ -14,7 +14,7 @@ const faqs = [
       },
       {
         q: 'Do you ship internationally?',
-        a: 'Currently, our primary delivery network covers all of India. However, for BKP enterprise orders, we do facilitate international shipping via specialized freight partners. Please contact support for a quote.'
+        a: 'Currently, our primary delivery network covers all of India. However, for Archana enterprise orders, we do facilitate international shipping via specialized freight partners. Please contact support for a quote.'
       },
       {
         q: 'How can I track the progress of my furniture?',
@@ -31,7 +31,7 @@ const faqs = [
       },
       {
         q: 'Do you offer a warranty?',
-        a: 'Yes, every BKP curation comes with a 5-Year Structural Warranty covering joint integrity and frame stability. Upholstery and superficial wear and tear are subject to standard usage guidelines.'
+        a: 'Yes, every Archana curation comes with a 5-Year Structural Warranty covering joint integrity and frame stability. Upholstery and superficial wear and tear are subject to standard usage guidelines.'
       }
     ]
   },

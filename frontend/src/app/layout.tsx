@@ -23,8 +23,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'BKP HOMES — Premium Handcrafted Furniture',
-  description: 'BKP HOMES creates luxury, custom-built hardwood furniture and modular interior curations in Hyderabad, India. Browse sofas, king beds, and dining sets.',
+  title: 'Archana Furniture — Premium Handcrafted Furniture',
+  description: 'Archana Furniture creates luxury, custom-built hardwood furniture and modular interior curations in Hyderabad, India. Browse sofas, king beds, and dining sets.',
   metadataBase: new URL('http://localhost:3000'),
 };
 

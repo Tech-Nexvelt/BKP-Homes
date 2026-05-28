@@ -25,14 +25,14 @@ export const sendMail = async (options: SendMailOptions): Promise<void> => {
 export const sendOTPEmail = async (to: string, otp: string, name: string): Promise<void> => {
   await sendMail({
     to,
-    subject: 'BKP — Verify your email',
+    subject: 'Archana — Verify your email',
     html: `
       <!DOCTYPE html>
       <html>
         <body style="background:#0d0d0d;font-family:Inter,sans-serif;padding:40px;color:#f0ece4;">
           <div style="max-width:480px;margin:0 auto;background:#141414;border:0.5px solid #222;border-radius:6px;padding:40px;">
             <div style="text-align:center;margin-bottom:32px;">
-              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">BKP</span>
+              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">Archana</span>
             </div>
             <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:400;color:#f0ece4;margin-bottom:8px;">
               Hello, ${name}
@@ -60,14 +60,14 @@ export const sendPasswordResetEmail = async (
 ): Promise<void> => {
   await sendMail({
     to,
-    subject: 'BKP — Reset your password',
+    subject: 'Archana — Reset your password',
     html: `
       <!DOCTYPE html>
       <html>
         <body style="background:#0d0d0d;font-family:Inter,sans-serif;padding:40px;color:#f0ece4;">
           <div style="max-width:480px;margin:0 auto;background:#141414;border:0.5px solid #222;border-radius:6px;padding:40px;">
             <div style="text-align:center;margin-bottom:32px;">
-              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">BKP</span>
+              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">Archana</span>
             </div>
             <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:400;color:#f0ece4;">
               Reset your password
@@ -93,20 +93,20 @@ export const sendPasswordResetEmail = async (
 export const sendWelcomeEmail = async (to: string, name: string): Promise<void> => {
   await sendMail({
     to,
-    subject: 'Welcome to BKP — Crafted for discerning homes',
+    subject: 'Welcome to Archana — Crafted for discerning homes',
     html: `
       <!DOCTYPE html>
       <html>
         <body style="background:#0d0d0d;font-family:Inter,sans-serif;padding:40px;color:#f0ece4;">
           <div style="max-width:480px;margin:0 auto;background:#141414;border:0.5px solid #222;border-radius:6px;padding:40px;">
             <div style="text-align:center;margin-bottom:32px;">
-              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">BKP</span>
+              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">Archana</span>
             </div>
             <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:400;font-style:italic;color:#f0ece4;">
               Welcome, ${name}
             </h2>
             <p style="color:#aaa;font-size:14px;line-height:1.8;">
-              Thank you for joining BKP. Explore our handcrafted furniture collection, designed and built in our Hyderabad workshop using premium teak, walnut, and marble.
+              Thank you for joining Archana. Explore our handcrafted furniture collection, designed and built in our Hyderabad workshop using premium teak, walnut, and marble.
             </p>
             <div style="text-align:center;margin-top:32px;">
               <a href="${process.env['FRONTEND_URL']}/products" style="background:#4a7c59;color:#fff;padding:14px 32px;border-radius:24px;text-decoration:none;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">
@@ -129,14 +129,14 @@ export const sendOrderConfirmationEmail = async (
 ): Promise<void> => {
   await sendMail({
     to,
-    subject: `BKP — Order Confirmed #${trackingId}`,
+    subject: `Archana — Order Confirmed #${trackingId}`,
     html: `
       <!DOCTYPE html>
       <html>
         <body style="background:#0d0d0d;font-family:Inter,sans-serif;padding:40px;color:#f0ece4;">
           <div style="max-width:480px;margin:0 auto;background:#141414;border:0.5px solid #222;border-radius:6px;padding:40px;">
             <div style="text-align:center;margin-bottom:32px;">
-              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">BKP</span>
+              <span style="font-family:Georgia,serif;font-size:24px;letter-spacing:0.2em;color:#4a7c59;">Archana</span>
             </div>
             <h2 style="font-family:Georgia,serif;font-size:20px;font-weight:400;color:#f0ece4;">
               Order Confirmed!

@@ -1,4 +1,4 @@
-export const APP_NAME = 'BKP';
+export const APP_NAME = 'Archana';
 export const APP_TAGLINE = 'Interior Design, Redefined';
 export const APP_URL = process.env['NEXT_PUBLIC_APP_URL'] ?? 'http://localhost:3000';
 export const API_URL = process.env['NEXT_PUBLIC_API_URL'] ?? 'http://localhost:5000/api/v1';

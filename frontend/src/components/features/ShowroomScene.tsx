@@ -64,7 +64,7 @@ function RealChairModel() {
   // Using a highly realistic, premium velvet/wood chair GLTF sample model
   const { scene } = useGLTF('/models/SheenChair.glb');
   
-  // Custom luxury fabric material color adjustment to match BKP's premium branding
+  // Custom luxury fabric material color adjustment to match Archana's premium branding
   React.useMemo(() => {
     scene.traverse((child) => {
       if (child instanceof THREE.Mesh) {

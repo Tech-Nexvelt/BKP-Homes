@@ -11,7 +11,7 @@ const api = axios.create({
 // Request interceptor — attach access token
 api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('bkp_access_token');
+    const token = localStorage.getItem('archana_access_token');
     if (token) config.headers['Authorization'] = `Bearer ${token}`;
   }
   return config;
@@ -35,21 +35,21 @@ api.interceptors.response.use(
         const { data } = await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true });
         const newToken = data.data?.accessToken;
         if (newToken) {
-          localStorage.setItem('bkp_access_token', newToken);
+          localStorage.setItem('archana_access_token', newToken);
           original.headers['Authorization'] = `Bearer ${newToken}`;
           return api(original);
         }
       } catch {
         // Refresh failed — clear local auth state
         if (typeof window !== 'undefined') {
-          localStorage.removeItem('bkp_access_token');
+          localStorage.removeItem('archana_access_token');
           // Clear persisted Zustand store so pages know user is logged out
           try {
-            const stored = localStorage.getItem('bkp-auth');
+            const stored = localStorage.getItem('archana-auth');
             if (stored) {
               const parsed = JSON.parse(stored);
               parsed.state = { ...parsed.state, isAuthenticated: false, user: null, accessToken: null };
-              localStorage.setItem('bkp-auth', JSON.stringify(parsed));
+              localStorage.setItem('archana-auth', JSON.stringify(parsed));
             }
           } catch { /* ignore */ }
           // Replace current history entry — avoids back-button loop

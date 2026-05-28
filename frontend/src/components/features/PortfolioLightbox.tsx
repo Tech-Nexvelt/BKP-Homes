@@ -80,7 +80,7 @@ export function PortfolioLightbox({ projects }: PortfolioLightboxProps) {
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-gold">
                     <Sparkles className="h-4 w-4" />
-                    <span className="text-[10px] font-bold tracking-widest uppercase">{p.roomType || 'BKP design'}</span>
+                    <span className="text-[10px] font-bold tracking-widest uppercase">{p.roomType || 'Archana design'}</span>
                   </div>
                   <h3 className="font-display text-lg font-semibold text-foreground tracking-wide line-clamp-1">
                     {p.title}

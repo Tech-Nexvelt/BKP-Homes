@@ -7,7 +7,7 @@ const startServer = async (): Promise<void> => {
   await connectDatabase();
 
   const server = app.listen(env.PORT, () => {
-    logger.info(`🚀 BKP API running on http://localhost:${env.PORT}`);
+    logger.info(`🚀 Archana API running on http://localhost:${env.PORT}`);
     logger.info(`📊 Environment: ${env.NODE_ENV}`);
     logger.info(`🔗 API Base: http://localhost:${env.PORT}/api/v1`);
   });

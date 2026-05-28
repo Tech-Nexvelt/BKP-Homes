@@ -21,7 +21,7 @@ export function useAuth() {
       if (!accessToken) return null;
       // Intercept mock token for static demo mode
       if (accessToken === 'mock-jwt-token-123') {
-        return { id: 'mock-1', name: 'BKP Admin', email: 'BKPHomes@gmail.com', role: 'ADMIN' };
+        return { id: 'mock-1', name: 'Archana Admin', email: 'Archana@gmail.com', role: 'ADMIN' };
       }
       const res = await authService.me();
       return res.data.data;
@@ -37,11 +37,11 @@ export function useAuth() {
   const loginMutation = useMutation({
     mutationFn: async (data: LoginPayload) => {
       // Intercept hardcoded credentials for static demo mode
-      if (data.email.toLowerCase() === 'bkphomes@gmail.com' && data.password === 'BKPHomes@123') {
+      if (data.email.toLowerCase() === 'archana@gmail.com' && data.password === 'Archana@123') {
         return {
           data: {
             data: {
-              user: { id: 'mock-1', name: 'BKP Admin', email: 'BKPHomes@gmail.com', role: 'ADMIN' },
+              user: { id: 'mock-1', name: 'Archana Admin', email: 'Archana@gmail.com', role: 'ADMIN' },
               accessToken: 'mock-jwt-token-123',
             }
           }

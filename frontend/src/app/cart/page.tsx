@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 const CART_ITEMS = [
   {
     id: 1,
-    name: 'BKP MODULAR SOFA SYSTEM',
+    name: 'Archana MODULAR SOFA SYSTEM',
     category: 'Living',
     material: 'Top Grain Leather',
     color: 'Obsidian Black',
@@ -287,7 +287,7 @@ export default function CartPage() {
                 <div className="flex-1 relative rounded-2xl overflow-hidden border border-white/10">
                   <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600" alt="Studio" className="w-full h-full object-cover brightness-[0.7]" />
                   <div className="absolute top-3 right-3">
-                     <span className="font-display text-lg font-bold text-white tracking-[0.2em] drop-shadow-lg">BKP</span>
+                     <span className="font-display text-lg font-bold text-white tracking-[0.2em] drop-shadow-lg">Archana</span>
                   </div>
                 </div>
               </div>
